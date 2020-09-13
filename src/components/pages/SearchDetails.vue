@@ -41,7 +41,6 @@ export default {
   methods: {
     async getSearchDetails(searchText) {
       let showsResponse = await ShowsService.getSearchShows(searchText);
-      console.log(showsResponse, searchText);
       return showsResponse;
     }
   }

@@ -12,7 +12,6 @@
 </template>
 <script>
 export default {
-  name: "maze-search",
   data() {
     return {
       searchtext: ""
@@ -22,10 +21,7 @@ export default {
 </script>
 <style scoped>
 .w3_search {
-  float: left;
   width: 40%;
-  margin-left: 9em;
-  margin-top: 0.7em;
 }
 .w3_search input[type="text"] {
   outline: none;
@@ -33,8 +29,6 @@ export default {
   background: #efefef;
   padding: 10px;
   text-align: center;
-  font-size: 14px;
-  color: #999;
   width: 50%;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
@@ -44,7 +38,6 @@ export default {
   border: none;
   background: #212121;
   padding: 10px 0;
-  font-size: 14px;
   color: #fff;
   width: 22%;
   border-top-right-radius: 25px;

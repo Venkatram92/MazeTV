@@ -12,8 +12,8 @@ export default {
   getShows() {
     return apiClient.get("/shows");
   },
-  getEpisodes(id) {
-    return apiClient.get(`/shows/${id}/episodes`);
+  getShow(id) {
+    return apiClient.get(`/shows/${id}`);
   },
   getSearchShows(searchText) {
     return apiClient.get(`/search/shows?q=${searchText}`);

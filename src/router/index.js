@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import ShowsService from "@/services/ShowsService.js";
 
 Vue.use(VueRouter);
 
@@ -19,13 +18,7 @@ const routes = [
     path: "/showDetails/:id",
     name: "show-details",
     props: true,
-    component: () => import("../components/pages/ShowDetails.vue"),
-    async beforeEnter(routeTo, routeFrom, next) {
-      routeTo.params.episodes = await ShowsService.getEpisodes(
-        routeTo.params.id
-      );
-      next();
-    }
+    component: () => import("../components/pages/ShowDetails.vue")
   },
   {
     path: "/searchDetails/:searchText",

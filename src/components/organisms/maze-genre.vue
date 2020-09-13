@@ -15,13 +15,10 @@
         <router-link
           :to="{
             name: 'show-details',
-            params: { id: show.id, fullDetails: show }
+            params: { id: show.id, showData: show }
           }"
         >
-          <v-lazy-image
-            class="pointer img-fluid p-1"
-            :src="show.image.medium"
-          />
+          <img class="pointer img-fluid p-1" :src="show.image.medium" />
         </router-link>
       </slide>
     </carousel>
@@ -30,16 +27,13 @@
 
 <script>
 import { Carousel, Slide } from "vue-carousel";
-import VLazyImage from "v-lazy-image";
 export default {
-  name: "genres",
   props: {
     genreData: {
       type: Object
     }
   },
   components: {
-    VLazyImage,
     Carousel,
     Slide
   }

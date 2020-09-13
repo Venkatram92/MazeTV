@@ -11,7 +11,6 @@ import mazeGenre from "@/components/organisms/maze-genre.vue";
 import { showsMixin } from "@/mixins/showsMixin.js";
 
 export default {
-  name: "genres",
   mixins: [showsMixin],
   components: {
     mazeGenre

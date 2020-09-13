@@ -1,23 +1,37 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import ShowsService from "@/services/ShowsService.js";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "popular-shows",
+    component: () => import("../components/pages/PopularShows.vue")
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+    path: "/allshows",
+    name: "all-shows",
+    component: () => import("../components/pages/allShows.vue")
+  },
+  {
+    path: "/showDetails/:id",
+    name: "show-details",
+    props: true,
+    component: () => import("../components/pages/ShowDetails.vue"),
+    async beforeEnter(routeTo, routeFrom, next) {
+      routeTo.params.episodes = await ShowsService.getEpisodes(
+        routeTo.params.id
+      );
+      next();
+    }
+  },
+  {
+    path: "/searchDetails/:searchText",
+    name: "search-details",
+    props: true,
+    component: () => import("../components/pages/SearchDetails.vue")
   }
 ];
 

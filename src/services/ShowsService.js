@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: `http://api.tvmaze.com/`,
+  baseURL: `https://api.tvmaze.com/`,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json"

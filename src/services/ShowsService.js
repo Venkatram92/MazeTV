@@ -20,5 +20,11 @@ export default {
   },
   getShowImages(id) {
     return apiClient.get(`/shows/${id}/images`);
+  },
+  getShowCast(id) {
+    return apiClient.get(`shows/${id}/cast`);
+  },
+  getShowCrew(id) {
+    return apiClient.get(`shows/${id}/crew`);
   }
 };

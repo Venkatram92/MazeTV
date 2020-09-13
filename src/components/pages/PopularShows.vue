@@ -1,15 +1,22 @@
 <template>
   <div class="pt-4" v-if="popularShows.length > 0">
-    <h3>Popular shows</h3>
+    <h3 class="text-center">Popular shows</h3>
     <carousel-3d
       :loop="false"
-      :height="520"
+      :height="500"
       :width="300"
       :controls-visible="true"
     >
       <slide v-for="(show, index) in popularShows" :key="index" :index="index">
         <figure>
-          <img :src="show.image.original" class="pointer img-fluid" />
+          <router-link
+            :to="{
+              name: 'show-details',
+              params: { id: show.id, showData: show }
+            }"
+          >
+            <img :src="show.image.medium" class="pointer img-fluid" />
+          </router-link>
           <div class="show-content">
             <h4 class="show-title">{{ show.name }}</h4>
             <div class="show-ratings">
@@ -21,7 +28,7 @@
       </slide>
     </carousel-3d>
     <router-link :to="{ name: 'all-shows' }">
-      <h4>View all shows</h4>
+      <h4 class="text-center">View all shows</h4>
     </router-link>
   </div>
 </template>
@@ -45,6 +52,9 @@ export default {
 };
 </script>
 <style scoped>
+a {
+  text-decoration: none;
+}
 .pointer {
   cursor: pointer;
 }

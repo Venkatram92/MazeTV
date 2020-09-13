@@ -1,13 +1,20 @@
 <template>
-  <div class="container">
+  <div class="container d-flex flex-row flex-wrap">
     <span v-for="(show, index) in shows" :key="index">
       <div v-if="show.show.image">
         <figure class="figure mt-4">
-          <img
-            :src="show.show.image.medium"
-            class="figure-img img-fluid rounded w-75"
-          />
-          <figcaption class="figure-caption text-center">
+          <router-link
+            :to="{
+              name: 'show-details',
+              params: { id: show.show.id, showData: show.show }
+            }"
+          >
+            <img
+              :src="show.show.image.medium"
+              class="figure-img img-fluid rounded w-75"
+            />
+          </router-link>
+          <figcaption class="figure-caption">
             {{ show.show.name }}
           </figcaption>
         </figure>
@@ -46,9 +53,3 @@ export default {
   }
 };
 </script>
-<style scoped>
-.container {
-  display: flex;
-  flex-flow: row wrap;
-}
-</style>

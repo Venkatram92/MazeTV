@@ -1,15 +1,37 @@
 <template>
   <div>
-    <nav class="navbar navbar-dark navbar-expand-sm bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
       <h1 class="text-light mt-2">MazeTV</h1>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
-            <router-link :to="{ path: '/' }">
-              <span class="text-light pl-4">Home </span>
-              <span class="text-light pl-4">Dashboard</span>
-              <span class="text-light pl-4">Genres</span>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <router-link :to="{ name: 'popular-shows' }">
+              <a class="nav-link text-light pl-4" href="#">Dashboard</a>
             </router-link>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle text-light pl-4"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+            >
+              Genres
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+            </div>
           </li>
         </ul>
         <maze-search />

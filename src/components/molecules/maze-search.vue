@@ -1,18 +1,11 @@
 <template>
-  <div>
-    <form class="form-inline my-2 my-lg-0">
-      <input
-        class="form-control mr-sm-2"
-        v-model="searchtext"
-        type="search"
-        placeholder="Search"
-      />
+  <div class="w3_search">
+    <form>
+      <input type="text" v-model="searchtext" placeholder="Search" />
       <router-link
         :to="{ name: 'search-details', params: { searchText: searchtext } }"
       >
-        <button class="btn btn-light my-2 my-sm-0" type="submit">
-          Search
-        </button>
+        <input type="submit" value="Go" />
       </router-link>
     </form>
   </div>
@@ -27,3 +20,37 @@ export default {
   }
 };
 </script>
+<style scoped>
+.w3_search {
+  float: left;
+  width: 40%;
+  margin-left: 9em;
+  margin-top: 0.7em;
+}
+.w3_search input[type="text"] {
+  outline: none;
+  border: none;
+  background: #efefef;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  color: #999;
+  width: 50%;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+.w3_search input[type="submit"] {
+  outline: none;
+  border: none;
+  background: #212121;
+  padding: 10px 0;
+  font-size: 14px;
+  color: #fff;
+  width: 22%;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+.w3_search input[type="submit"]:hover {
+  background: #ff8d1b;
+}
+</style>

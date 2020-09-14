@@ -1,4 +1,5 @@
 import axios from "axios";
+import router from "@/router/index.js";
 
 const apiClient = axios.create({
   baseURL: `https://api.tvmaze.com/`,
@@ -6,6 +7,12 @@ const apiClient = axios.create({
     Accept: "application/json",
     "Content-Type": "application/json"
   }
+});
+
+apiClient.interceptors.response.use(null, error => {
+  let path = "/error";
+  router.push(path);
+  return Promise.reject(error);
 });
 
 export default {

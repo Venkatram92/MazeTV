@@ -47,7 +47,11 @@ export default {
     };
   },
   async created() {
-    this.popularShows = await this.getPopularShows();
+    try {
+      this.popularShows = await this.getPopularShows();
+    } catch (err) {
+      console.log(err);
+    }
   }
 };
 </script>

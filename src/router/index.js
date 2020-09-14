@@ -25,6 +25,10 @@ const routes = [
     name: "search-details",
     props: true,
     component: () => import("../components/pages/SearchDetails.vue")
+  },
+  {
+    path: "/error",
+    component: () => import("../components/pages/Error.vue")
   }
 ];
 

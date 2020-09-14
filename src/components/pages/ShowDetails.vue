@@ -94,15 +94,42 @@ export default {
       return value.join(" | ");
     }
   },
+  methods: {
+    async fetchShowDetails() {
+      try {
+        let showsResponse = await ShowsService.getShow(this.$route.params.id);
+        this.showDetails = showsResponse.data;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async fetchCastDetails() {
+      try {
+        let castResponse = await ShowsService.getShowCast(
+          this.$route.params.id
+        );
+        this.castData = castResponse.data.slice(0, 6);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async fetchCrewDetails() {
+      try {
+        let crewResponse = await ShowsService.getShowCrew(
+          this.$route.params.id
+        );
+        this.crewData = crewResponse.data.slice(0, 6);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  },
   async created() {
     if (!this.showDetails) {
-      let showsResponse = await ShowsService.getShow(this.$route.params.id);
-      this.showDetails = showsResponse.data;
+      this.fetchShowDetails();
     }
-    let castResponse = await ShowsService.getShowCast(this.$route.params.id);
-    this.castData = castResponse.data.slice(0, 6);
-    let crewResponse = await ShowsService.getShowCrew(this.$route.params.id);
-    this.crewData = crewResponse.data.slice(0, 6);
+    this.fetchCastDetails();
+    this.fetchCrewDetails();
   }
 };
 </script>

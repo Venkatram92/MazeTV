@@ -42,18 +42,20 @@ export default {
     }
   },
   async beforeRouteUpdate(to, from, next) {
-    const showsResponse = await this.getSearchDetails(to.params.searchText);
-    this.shows = showsResponse.data;
+    this.getSearchDetails(to.params.searchText);
     next();
   },
   async created() {
-    const showsResponse = await this.getSearchDetails(this.searchText);
-    this.shows = showsResponse.data;
+    this.getSearchDetails(this.searchText);
   },
   methods: {
     async getSearchDetails(searchText) {
-      let showsResponse = await ShowsService.getSearchShows(searchText);
-      return showsResponse;
+      try {
+        let showsResponse = await ShowsService.getSearchShows(searchText);
+        this.shows = showsResponse.data;
+      } catch (err) {
+        console.log(err);
+      }
     }
   }
 };

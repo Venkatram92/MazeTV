@@ -1,7 +1,7 @@
 <template>
-  <div class="w3_search">
-    <form>
-      <input type="text" v-model="searchtext" placeholder="Search" />
+  <div class="maze-search">
+    <form class="mt-lg-0">
+      <input type="text" v-model="searchtext" placeholder="Search" required />
       <router-link
         :to="{ name: 'search-details', params: { searchText: searchtext } }"
       >
@@ -20,10 +20,10 @@ export default {
 };
 </script>
 <style scoped>
-.w3_search {
+.maze-search {
   width: 40%;
 }
-.w3_search input[type="text"] {
+.maze-search input[type="text"] {
   outline: none;
   border: none;
   background: #efefef;
@@ -33,7 +33,7 @@ export default {
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
 }
-.w3_search input[type="submit"] {
+.maze-search input[type="submit"] {
   outline: none;
   border: none;
   background: #212121;
@@ -43,7 +43,15 @@ export default {
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
 }
-.w3_search input[type="submit"]:hover {
+.maze-search input[type="submit"]:hover {
   background: #ff8d1b;
+}
+
+@media only screen and (max-width: 768px) {
+  .maze-search {
+    width: 80%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+  }
 }
 </style>

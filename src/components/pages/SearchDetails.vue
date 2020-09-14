@@ -1,5 +1,5 @@
 <template>
-  <div class="container d-flex flex-row flex-wrap">
+  <div class="container d-flex flex-row flex-wrap" v-if="shows.length > 0">
     <span v-for="(show, index) in shows" :key="index">
       <div v-if="show.show.image">
         <figure class="figure mt-4">
@@ -20,6 +20,11 @@
         </figure>
       </div>
     </span>
+  </div>
+  <div v-else>
+    <h2 class="noshows d-flex justify-content-center align-items-center">
+      No shows found
+    </h2>
   </div>
 </template>
 <script>
@@ -53,3 +58,9 @@ export default {
   }
 };
 </script>
+<style scoped>
+.noshows {
+  height: 85vh;
+  width: 100%;
+}
+</style>

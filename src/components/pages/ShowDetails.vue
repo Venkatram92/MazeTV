@@ -9,11 +9,26 @@
           />
         </div>
         <div class="col-lg-8">
-          <div class="mb-4">Rating: {{ showDetails.rating.average }}/10</div>
-          <div class="mb-4">Runtime: {{ showDetails.runtime }} Mins</div>
-          <div class="mb-4">Language: {{ showDetails.language }}</div>
-          <div class="mb-4">Release date: {{ showDetails.premiered }}</div>
-          <div class="mb-4">Genres: {{ showDetails.genres | joinArray }}</div>
+          <div class="mb-4">
+            <span class="font-weight-bold">Rating: </span>
+            <span class="pl-3">{{ showDetails.rating.average }}/10</span>
+          </div>
+          <div class="mb-4">
+            <span class="font-weight-bold">Runtime: </span>
+            <span class="pl-3">{{ showDetails.runtime }} Mins</span>
+          </div>
+          <div class="mb-4">
+            <span class="font-weight-bold">Language: </span>
+            <span class="pl-3">{{ showDetails.language }}</span>
+          </div>
+          <div class="mb-4">
+            <span class="font-weight-bold">Release date:</span>
+            <span class="pl-3">{{ showDetails.premiered }}</span>
+          </div>
+          <div class="mb-4">
+            <span class="font-weight-bold">Genres:</span>
+            <span class="pl-3">{{ showDetails.genres | joinArray }}</span>
+          </div>
           <h3 class="mb-2">Description</h3>
           <p class="text-justify" v-html="showDetails.summary"></p>
         </div>

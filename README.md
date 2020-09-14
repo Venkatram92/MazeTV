@@ -1,4 +1,6 @@
-# tvshowapp
+# MazeTV Application
+
+![MazeTV](https://github.com/Venkatram92/MazeTV/blob/master/MazeTV.JPG)
 
 ## Project setup
 ```

@@ -2,7 +2,7 @@
 
 ![MazeTV](https://github.com/Venkatram92/MazeTV/blob/master/MazeTV.JPG)
 
-[Go to mazetv website](https://vue-tvshowapp.herokuapp.com/)
+[Go to mazetv application](https://vue-tvshowapp.herokuapp.com/)
 
 ## Project setup
 ```

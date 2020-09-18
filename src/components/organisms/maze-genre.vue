@@ -7,7 +7,7 @@
           :navigation-enabled="true"
           :navigationClickTargetSize="10"
           :perPageCustom="[
-            [300, 4],
+            [300, 2],
             [420, 4],
             [768, 5],
             [1024, 8]

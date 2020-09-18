@@ -8,7 +8,7 @@
         <div class="card-header">
           <h1 class="mb-0">
             <button
-              class="btn text-white"
+              class="btn"
               type="button"
               data-toggle="collapse"
               :data-target="'#collapse' + index"
@@ -37,7 +37,7 @@
                     :src="require('@/assets/images/default-image.png')"
                     class="figure-img img-fluid rounded w-100"
                   />
-                  <div class="figure-caption text-center text-white">
+                  <div class="text-dark text-center">
                     Episode {{ episode.number }}
                   </div>
                 </figure>
@@ -64,8 +64,5 @@ export default {
 }
 .card-header {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.card {
-  background-color: #1a242d;
 }
 </style>

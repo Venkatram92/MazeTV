@@ -21,7 +21,7 @@
                 class="figure-img img-fluid rounded w-100"
               />
             </router-link>
-            <figcaption class="figure-caption">
+            <figcaption class="text-light text-center">
               {{ show.show.name }}
             </figcaption>
           </figure>

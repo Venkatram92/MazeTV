@@ -15,7 +15,7 @@ export default {
 </script>
 <style scoped>
 #app {
-  background-color: #0f171e;
+  background-color: #324658;
   min-height: 100vh;
 }
 </style>

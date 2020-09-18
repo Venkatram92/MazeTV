@@ -10,9 +10,7 @@
       :src="require('@/assets/images/default-image.png')"
       class="figure-img img-fluid rounded-circle w-50 mx-auto d-block"
     />
-    <div class="figure-caption text-center">
-      {{ name }}
-    </div>
+    <div class="text-center">{{ name }}</div>
   </div>
 </template>
 <script>

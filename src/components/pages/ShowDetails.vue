@@ -1,71 +1,40 @@
 <template>
   <div v-if="showDetails">
-    <div class="container pt-5">
-      <div class="row">
-        <div class="col-lg-4">
-          <img
-            class="img-fluid w-100 rounded"
-            :src="showDetails.image.medium"
-          />
-        </div>
-        <div class="col-lg-8">
-          <div class="mb-4">
-            <span class="font-weight-bold">Rating: </span>
-            <span class="pl-3">{{ showDetails.rating.average }}/10</span>
-          </div>
-          <div class="mb-4">
-            <span class="font-weight-bold">Runtime: </span>
-            <span class="pl-3">{{ showDetails.runtime }} Mins</span>
-          </div>
-          <div class="mb-4">
-            <span class="font-weight-bold">Language: </span>
-            <span class="pl-3">{{ showDetails.language }}</span>
-          </div>
-          <div class="mb-4">
-            <span class="font-weight-bold">Release date:</span>
-            <span class="pl-3">{{ showDetails.premiered }}</span>
-          </div>
-          <div class="mb-4">
-            <span class="font-weight-bold">Genres:</span>
-            <span class="pl-3">{{ showDetails.genres | joinArray }}</span>
-          </div>
-          <h3 class="mb-2">Description</h3>
-          <p class="text-justify" v-html="showDetails.summary"></p>
-        </div>
-      </div>
+    <div class="pl-4 pr-4 text-light pt-5">
+      <maze-showInfo
+        :image="showImage"
+        :rating="showRating"
+        :genres="showDetails.genres"
+        :runtime="showDetails.runtime"
+        :language="showDetails.language"
+        :premiered="showDetails.premiered"
+        :description="showDetails.summary"
+      />
+      <maze-seasons :showSeasons="showSeasons" />
       <div class="pt-4" v-if="castData.length > 0">
         <b>Cast</b>
-        <div class="row">
-          <span class="col-2" v-for="(cast, index) in castData" :key="index">
-            <div v-if="cast.person.image">
-              <figure class="figure mt-4">
-                <img
-                  :src="cast.person.image.medium"
-                  class="figure-img img-fluid rounded-circle w-50"
-                />
-                <figcaption class="figure-caption">
-                  {{ cast.person.name }}
-                </figcaption>
-              </figure>
+        <div class="pt-4 pb-4 row">
+          <span
+            class="col-md-2 col-4"
+            v-for="(cast, index) in castData"
+            :key="index"
+          >
+            <div>
+              <maze-cast :image="cast.person.image" :name="cast.person.name" />
             </div>
           </span>
         </div>
       </div>
-      <div v-if="crewData.length > 0">
+      <div class="pt-4" v-if="crewData.length > 0">
         <b>Crew</b>
-        <div class="row">
-          <span class="col-2" v-for="(crew, index) in crewData" :key="index">
-            <div v-if="crew.person.image">
-              <img
-                :src="crew.person.image.medium"
-                class="figure-img img-fluid rounded-circle w-50"
-              />
-              <div class="figure-caption">
-                {{ crew.type }}
-              </div>
-              <div class="figure-caption">
-                {{ crew.person.name }}
-              </div>
+        <div class="pt-4 pb-4 row">
+          <span
+            class="col-md-2 col-4"
+            v-for="(crew, index) in crewData"
+            :key="index"
+          >
+            <div>
+              <maze-cast :image="crew.person.image" :name="crew.type" />
             </div>
           </span>
         </div>
@@ -75,61 +44,62 @@
 </template>
 <script>
 import ShowsService from "@/services/ShowsService.js";
+import mazeCast from "@/components/molecules/maze-cast.vue";
+import mazeShowInfo from "@/components/molecules/maze-showInfo.vue";
+import mazeSeasons from "@/components/molecules/maze-seasons.vue";
 export default {
-  props: {
-    showData: {
-      type: Object
-    }
+  components: {
+    mazeCast,
+    mazeSeasons,
+    mazeShowInfo
   },
   data() {
     return {
-      showDetails: this.showData,
+      showName: String,
+      showImage: String,
+      showRating: String,
+      showDetails: Object,
+      showSeasons: Array,
       castData: [],
       crewData: []
     };
   },
-  filters: {
-    joinArray: function(value) {
-      if (!value) return "";
-      return value.join(" | ");
-    }
-  },
   methods: {
     async fetchShowDetails() {
       try {
-        let showsResponse = await ShowsService.getShow(this.$route.params.id);
-        this.showDetails = showsResponse.data;
+        this.showDetails = await ShowsService.getShow(this.$route.params.id);
+        this.showName = this.showDetails.name;
+        this.showImage = this.showDetails.image || null;
+        this.showRating = this.showDetails.rating;
+        if (this.showDetails._embedded) {
+          this.episodesBySeason(
+            this.showDetails._embedded.seasons,
+            this.showDetails._embedded.episodes
+          );
+          this.castData = this.showDetails._embedded.cast.slice(0, 6);
+          this.crewData = this.showDetails._embedded.crew.slice(0, 6);
+        }
       } catch (err) {
         console.log(err);
       }
     },
-    async fetchCastDetails() {
-      try {
-        let castResponse = await ShowsService.getShowCast(
-          this.$route.params.id
+    episodesBySeason(allSeasons, allEpisodes) {
+      let episodesByShows = [];
+      allSeasons.forEach(season => {
+        const Episodes = allEpisodes.filter(
+          episode => episode.season === season.number
         );
-        this.castData = castResponse.data.slice(0, 6);
-      } catch (err) {
-        console.log(err);
-      }
-    },
-    async fetchCrewDetails() {
-      try {
-        let crewResponse = await ShowsService.getShowCrew(
-          this.$route.params.id
-        );
-        this.crewData = crewResponse.data.slice(0, 6);
-      } catch (err) {
-        console.log(err);
-      }
+        const seasonData = {
+          season: season.number,
+          Episodes
+        };
+        episodesByShows.push(seasonData);
+      });
+      this.showSeasons = episodesByShows;
     }
   },
   async created() {
-    if (!this.showDetails) {
-      this.fetchShowDetails();
-    }
-    this.fetchCastDetails();
-    this.fetchCrewDetails();
+    this.fetchShowDetails();
   }
 };
 </script>

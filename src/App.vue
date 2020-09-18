@@ -11,5 +11,11 @@ export default {
   components: {
     mazeHeader
   }
-}
+};
 </script>
+<style scoped>
+#app {
+  background-color: #0f171e;
+  min-height: 100vh;
+}
+</style>

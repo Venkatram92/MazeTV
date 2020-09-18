@@ -9,29 +9,25 @@ const apiClient = axios.create({
   }
 });
 
-apiClient.interceptors.response.use(null, error => {
-  let path = "/error";
-  router.push(path);
-  return Promise.reject(error);
-});
+apiClient.interceptors.response.use(
+  response => response.data,
+  error => {
+    let path = "/error";
+    router.push(path);
+    return Promise.reject(error);
+  }
+);
 
 export default {
-  getShows() {
-    return apiClient.get("/shows");
-  },
-  getShow(id) {
-    return apiClient.get(`/shows/${id}`);
-  },
-  getSearchShows(searchText) {
-    return apiClient.get(`/search/shows?q=${searchText}`);
-  },
-  getShowImages(id) {
-    return apiClient.get(`/shows/${id}/images`);
-  },
-  getShowCast(id) {
-    return apiClient.get(`shows/${id}/cast`);
-  },
-  getShowCrew(id) {
-    return apiClient.get(`shows/${id}/crew`);
-  }
+  // Api request for all shows
+  getShows: () => apiClient.get("/shows"),
+
+  // Api request for particular show id
+  getShow: id =>
+    apiClient.get(
+      `/shows/${id}?embed[]=episodes&embed[]=seasons&embed[]=cast&embed[]=crew`
+    ),
+
+  // Api request to search shows
+  getSearchShows: searchText => apiClient.get(`/search/shows?q=${searchText}`)
 };

@@ -1,34 +1,39 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Home from "../components/pages/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "popular-shows",
-    component: () => import("../components/pages/PopularShows.vue")
-  },
-  {
-    path: "/allshows",
-    name: "all-shows",
-    component: () => import("../components/pages/allShows.vue")
+    name: "home",
+    component: Home,
+    meta: { title: "MazeTV-Dashbord" }
   },
   {
     path: "/showDetails/:id",
     name: "show-details",
     props: true,
-    component: () => import("../components/pages/ShowDetails.vue")
+    component: () => import("../components/pages/ShowDetails.vue"),
+    meta: { title: "MazeTV-Showdetails" }
   },
   {
     path: "/searchDetails/:searchText",
     name: "search-details",
     props: true,
-    component: () => import("../components/pages/SearchDetails.vue")
+    component: () => import("../components/pages/SearchDetails.vue"),
+    meta: { title: "MazeTV-Searchdetails" }
   },
   {
     path: "/error",
     component: () => import("../components/pages/Error.vue")
+  },
+  {
+    path: "*",
+    name: "home",
+    component: Home,
+    meta: { title: "MazeTV-Dashbord" }
   }
 ];
 
@@ -38,4 +43,9 @@ const router = new VueRouter({
   routes
 });
 
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
+
+  next();
+});
 export default router;

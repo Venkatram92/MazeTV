@@ -13,7 +13,7 @@
       <div class="collapse navbar-collapse" id="navbarTogglerMaze">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item pl-lg-4">
-            <router-link :to="{ name: 'popular-shows' }">
+            <router-link :to="{ name: 'home' }">
               <a class="nav-link" href="#">Dashboard</a>
             </router-link>
           </li>
@@ -24,7 +24,7 @@
   </div>
 </template>
 <script>
-import mazeSearch from "@/components/molecules/maze-search.vue";
+import mazeSearch from "@/components/atoms/maze-search.vue";
 export default {
   components: {
     mazeSearch

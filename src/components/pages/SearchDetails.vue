@@ -1,25 +1,33 @@
 <template>
-  <div class="container d-flex flex-row flex-wrap" v-if="shows.length > 0">
-    <span v-for="(show, index) in shows" :key="index">
-      <div v-if="show.show.image">
-        <figure class="figure mt-4">
-          <router-link
-            :to="{
-              name: 'show-details',
-              params: { id: show.show.id, showData: show.show }
-            }"
-          >
-            <img
-              :src="show.show.image.medium"
-              class="figure-img img-fluid rounded w-75"
-            />
-          </router-link>
-          <figcaption class="figure-caption">
-            {{ show.show.name }}
-          </figcaption>
-        </figure>
-      </div>
-    </span>
+  <div class="container" v-if="shows.length > 0">
+    <div class="row">
+      <span class="col-md-2 col-6" v-for="(show, index) in shows" :key="index">
+        <div>
+          <figure class="figure mt-4">
+            <router-link
+              :to="{
+                name: 'show-details',
+                params: { id: show.show.id, showData: show.show }
+              }"
+            >
+              <img
+                v-if="show.show.image"
+                :src="show.show.image.medium"
+                class="figure-img img-fluid rounded w-100"
+              />
+              <img
+                v-else
+                :src="require('@/assets/images/default-image.png')"
+                class="figure-img img-fluid rounded w-100"
+              />
+            </router-link>
+            <figcaption class="figure-caption">
+              {{ show.show.name }}
+            </figcaption>
+          </figure>
+        </div>
+      </span>
+    </div>
   </div>
   <div v-else>
     <h2 class="noshows d-flex justify-content-center align-items-center">
@@ -32,7 +40,8 @@ import ShowsService from "@/services/ShowsService.js";
 export default {
   data() {
     return {
-      shows: []
+      shows: [],
+      defaultImage: "@/assets/images/default-image.png"
     };
   },
   props: {
@@ -41,28 +50,26 @@ export default {
       required: true
     }
   },
-  async beforeRouteUpdate(to, from, next) {
-    this.getSearchDetails(to.params.searchText);
-    next();
-  },
-  async created() {
-    this.getSearchDetails(this.searchText);
-  },
   methods: {
     async getSearchDetails(searchText) {
       try {
-        let showsResponse = await ShowsService.getSearchShows(searchText);
-        this.shows = showsResponse.data;
+        this.shows = await ShowsService.getSearchShows(searchText);
       } catch (err) {
         console.log(err);
       }
     }
+  },
+  created() {
+    this.getSearchDetails(this.searchText);
+  },
+  beforeRouteUpdate(to, from, next) {
+    this.getSearchDetails(to.params.searchText);
+    next();
   }
 };
 </script>
 <style scoped>
 .noshows {
   height: 85vh;
-  width: 100%;
 }
 </style>

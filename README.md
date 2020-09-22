@@ -16,10 +16,16 @@ MazeTV application is a guide for popular tv shows from the [Tvmaze API](http://
 2. Bootstrap
 3. Used [vue-carousel](https://ssense.github.io/vue-carousel/) to display all shows in horizontal line
 4. Used [vue-carousel-3d](https://wlada.github.io/vue-carousel-3d/) to display popular shows
+```
 
 ## :newspaper: Components folder
 Divided components according to atomic design principles
-
+```bash
+components
+   ├───atoms
+   ├───molecules
+   ├───organisms
+```
 ## Project setup
 ```
 npm install

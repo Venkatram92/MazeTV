@@ -1,4 +1,4 @@
-# MazeTV Application VueJS
+# MazeTV Application in VueJS
 
 MazeTV application is a guide for popular tv shows from the [Tvmaze API](http://www.tvmaze.com/api). Displays information about a selected show like seasons, epdisodes, cast, crew. Functionality to search for shows.
 
@@ -43,5 +43,5 @@ npm run build
 
 ### Run your unit tests
 ```
-npm run test:unit
+npm run unit
 ```

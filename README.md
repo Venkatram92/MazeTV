@@ -11,11 +11,12 @@ MazeTV application is a guide for popular tv shows from the [Tvmaze API](http://
 3. @vue/cli 4.5.6
 ```
 ### Project dependencies
-axios
-Bootstrap
-Used [vue-carousel](https://ssense.github.io/vue-carousel/) to display all shows in horizontal line
-Used [vue-carousel-3d](https://wlada.github.io/vue-carousel-3d/) to display popular shows
-...[MadewithVUE](https://madewithvuejs.com/) helped to check reuseable components built in vuejs)
+
+1. axios
+2. Bootstrap
+3. Used [vue-carousel](https://ssense.github.io/vue-carousel/) to display all shows in horizontal line
+4. Used [vue-carousel-3d](https://wlada.github.io/vue-carousel-3d/) to display popular shows
+   [MadewithVUE](https://madewithvuejs.com/) helped to check reuseable components built in vuejs)
 
 
 ## Project setup

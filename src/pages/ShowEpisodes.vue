@@ -7,8 +7,8 @@
   </div>
 </template>
 <script>
-import { getEpisodes } from "@/services/ShowsService.js";
-import mazeEpisodes from "@/components/molecules/maze-episodes.vue";
+import { getEpisodes } from "@/services/ShowsService";
+import mazeEpisodes from "@/components/molecules/maze-episodes";
 export default {
   components: {
     mazeEpisodes

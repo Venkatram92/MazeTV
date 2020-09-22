@@ -8,6 +8,11 @@ describe("mazeSearch", () => {
       stubs: ["router-link"]
     });
   });
+
+  afterEach(() => {
+    headerWrapper.destroy();
+  });
+
   it("should check the html markup", () => {
     const expected =
       '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">';

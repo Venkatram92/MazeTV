@@ -24,6 +24,11 @@ describe("search details component", () => {
     };
     beforeRouteUpdate.call(searchDetailsWrapper.vm, toObj, "fromObj", nextFun);
   });
+
+  afterEach(() => {
+    searchDetailsWrapper.destroy();
+  });
+
   it("search details mark up should render", () => {
     const expected = '<h3 class="pt-4 text-secondary">Shows found "100"</h3>';
     expect(searchDetailsWrapper.html()).toContain(expected);

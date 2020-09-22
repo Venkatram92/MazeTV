@@ -18,11 +18,11 @@
           <span class="pl-3">{{ showInfo.language }}</span>
         </div>
         <div class="mb-4">
-          <span class="font-weight-bold">Release date:</span>
+          <span class="font-weight-bold">Release date: </span>
           <span class="pl-3">{{ showInfo.premiered }}</span>
         </div>
         <div class="mb-4">
-          <span class="font-weight-bold">Genres:</span>
+          <span class="font-weight-bold">Genres: </span>
           <span class="pl-3">{{ showInfo.genres | joinArray }}</span>
         </div>
         <div class="d-md-none d-xl-block">

@@ -1,7 +1,7 @@
 import mazeShowInfo from "@/components/molecules/maze-showInfo.vue";
 import { shallowMount } from "@vue/test-utils";
 
-describe("mazeShowInfo", () => {
+describe("mazeShowInfo component", () => {
   let showInfoWrapper;
   beforeEach(() => {
     showInfoWrapper = shallowMount(mazeShowInfo, {
@@ -18,8 +18,29 @@ describe("mazeShowInfo", () => {
       }
     });
   });
-  it("should check the html markup", () => {
+
+  afterEach(() => {
+    showInfoWrapper.destroy();
+  });
+
+  it("should render html to display Rating", () => {
     const expected = '<span class="font-weight-bold">Rating: </span>';
+    expect(showInfoWrapper.html()).toContain(expected);
+  });
+  it("should rnder html to display Runtime", () => {
+    const expected = '<span class="font-weight-bold">Runtime: </span>';
+    expect(showInfoWrapper.html()).toContain(expected);
+  });
+  it("should render html to display Language", () => {
+    const expected = '<span class="font-weight-bold">Language: </span>';
+    expect(showInfoWrapper.html()).toContain(expected);
+  });
+  it("should render html to display release date", () => {
+    const expected = '<span class="font-weight-bold">Release date: </span>';
+    expect(showInfoWrapper.html()).toContain(expected);
+  });
+  it("should render html to display genres", () => {
+    const expected = '<span class="font-weight-bold">Genres: </span>';
     expect(showInfoWrapper.html()).toContain(expected);
   });
 });

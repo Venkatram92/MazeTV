@@ -3,7 +3,7 @@ import { shallowMount, createLocalVue } from "@vue/test-utils";
 import * as ShowsService from "@/services/ShowsService";
 import VueRouter from "vue-router";
 
-describe("search details component", () => {
+describe("Search details component", () => {
   let showDetailsWrapper;
   const showInfo = {
     id: 169,
@@ -39,7 +39,8 @@ describe("search details component", () => {
       router,
       data() {
         return {
-          showId: "169"
+          showId: "169",
+          showDetails: {}
         };
       }
     });
@@ -49,13 +50,16 @@ describe("search details component", () => {
     showDetailsWrapper.destroy();
   });
 
-  it("test fetchShowDetails", async () => {
+  it("method fetchShowDetails should call getshow service call", async () => {
     jest.spyOn(ShowsService, "getShow").mockReturnValue(showInfo);
     await showDetailsWrapper.vm.fetchShowDetails();
     expect(ShowsService.getShow).toHaveBeenCalled();
   });
-  it("search details mark up should render", () => {
+  it("should render mark up", () => {
     const expected = 'div class="pl-4 pr-4 pt-5 text-secondary">';
     expect(showDetailsWrapper.html()).toContain(expected);
+  });
+  it("should render maze-showInfo mark up", () => {
+    expect(showDetailsWrapper.find("maze-showInfo-stub").exists()).toBe(true);
   });
 });

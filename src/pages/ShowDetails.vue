@@ -16,10 +16,10 @@
   </div>
 </template>
 <script>
-import { getShow } from "@/services/ShowsService.js";
-import mazeSeasons from "@/components/molecules/maze-seasons.vue";
-import mazeShowInfo from "@/components/molecules/maze-showInfo.vue";
-import mazeCastCrew from "@/components/molecules/maze-cast-crew.vue";
+import { getShow } from "@/services/ShowsService";
+import mazeSeasons from "@/components/molecules/maze-seasons";
+import mazeShowInfo from "@/components/molecules/maze-showInfo";
+import mazeCastCrew from "@/components/molecules/maze-cast-crew";
 
 export default {
   components: {
@@ -47,7 +47,7 @@ export default {
       }
     }
   },
-  async created() {
+  created() {
     this.fetchShowDetails();
   }
 };

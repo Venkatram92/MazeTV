@@ -1,25 +1,26 @@
 <template>
-  <img class="img-fluid p-1 w-100" :src="srcImage" />
+  <div>
+    <img
+      v-if="showImage"
+      :src="showImage.medium"
+      class="figure-img rounded w-100"
+    />
+    <img
+      v-else
+      src="@/assets/images/default-image.png"
+      class="figure-img rounded w-100"
+    />
+  </div>
 </template>
 
 <script>
 export default {
-  props: ["src"],
-  data: () => ({ intersected: false }),
-  computed: {
-    srcImage() {
-      return this.intersected ? this.src : "";
-    }
-  },
-  mounted() {
-    let observer = new IntersectionObserver(entries => {
-      const image = entries[0];
-      if (image.isIntersecting) {
-        this.intersected = true;
-        observer.disconnect();
-      }
-    });
-    observer.observe(this.$el);
-  }
+  props: ["showImage"]
 };
 </script>
+<style scoped>
+img:hover {
+  transition: 0.3s;
+  box-shadow: 12px 6px 8px rgb(125, 137, 145);
+}
+</style>

@@ -1,18 +1,18 @@
 <template>
   <div class="mx-3 my-4">
     <div v-for="(genre, index) in genresData" :key="index">
-      <h3 class="pl-4 py-4 ml-1 text-light">{{ genre.genre }}</h3>
+      <h3 class="pl-4 py-4 ml-1 text-secondary">{{ genre.genre }}</h3>
       <div class="pl-4 pr-4">
         <carousel
-          :navigation-enabled="true"
-          :navigationClickTargetSize="10"
           :perPageCustom="[
-            [300, 2],
+            [300, 3],
             [420, 4],
             [768, 5],
             [1024, 8]
           ]"
+          :navigation-enabled="true"
           :pagination-enabled="false"
+          :navigationClickTargetSize="12"
         >
           <slide
             v-for="(show, index) in genre.shows"
@@ -23,10 +23,10 @@
               :to="{ name: 'show-details', params: { id: show.id } }"
             >
               <div class="show">
-                <div class="show-overlay"></div>
                 <lazyImage :src="show.image.medium" />
-                <div class="show-details fadeIn-bottom">
-                  <h3>Rating</h3>
+                <div class="show-overlay"></div>
+                <div class="show-details text-light fadeIn-bottom">
+                  <h3 class="text-uppercase">Rating</h3>
                   <p>{{ show.rating.average }}/10</p>
                   <a class="text-light">View show</a>
                 </div>
@@ -41,7 +41,7 @@
 
 <script>
 import { Carousel, Slide } from "vue-carousel";
-import lazyImage from "@/components/atoms/maze-image.vue";
+import lazyImage from "@/components/atoms/maze-lazyImage.vue";
 
 export default {
   components: { lazyImage, Carousel, Slide },
@@ -55,6 +55,25 @@ export default {
   position: relative;
 }
 
+.fadeIn-bottom {
+  top: 80%;
+}
+
+.show-details p {
+  font-size: 1em;
+}
+
+.show-details h3 {
+  letter-spacing: 0.15em;
+}
+
+.show:hover .show-details {
+  cursor: pointer;
+  top: 50%;
+  left: 50%;
+  opacity: 1;
+}
+
 .show .show-overlay {
   background: rgba(0, 0, 0, 0.7);
   position: absolute;
@@ -63,9 +82,6 @@ export default {
   bottom: 0;
   right: 0;
   opacity: 0;
-  -webkit-transition: all 0.4s ease-in-out 0s;
-  -moz-transition: all 0.4s ease-in-out 0s;
-  transition: all 0.4s ease-in-out 0s;
 }
 
 .show:hover .show-overlay {
@@ -83,27 +99,5 @@ export default {
   -webkit-transition: all 0.3s ease-in-out 0s;
   -moz-transition: all 0.3s ease-in-out 0s;
   transition: all 0.3s ease-in-out 0s;
-}
-
-.show:hover .show-details {
-  cursor: pointer;
-  top: 50%;
-  left: 50%;
-  opacity: 1;
-}
-
-.show-details h3 {
-  color: #fff;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.show-details p {
-  color: #fff;
-  font-size: 1em;
-}
-
-.fadeIn-bottom {
-  top: 80%;
 }
 </style>

@@ -1,68 +1,33 @@
 <template>
   <div>
-    <div class="pt-4" v-if="showSeasons.length > 0">
+    <div class="pt-4">
       <h3>Seasons</h3>
-    </div>
-    <div class="accordion">
-      <div class="card" v-for="(season, index) in showSeasons" :key="index">
-        <div class="card-header">
-          <h1 class="mb-0">
-            <button
-              class="btn"
-              type="button"
-              data-toggle="collapse"
-              :data-target="'#collapse' + index"
-            >
-              Season {{ index + 1 }} | Episodes
-              {{ season.Episodes.length }}
-            </button>
-          </h1>
-        </div>
-        <div :id="'collapse' + index" class="collapse">
-          <div class="ml-2 mr-2">
-            <div class="row">
-              <span
-                class="col-md-2 col-4"
-                v-for="(episode, index) in season.Episodes"
-                :key="index"
-              >
-                <figure class="figure mt-4">
-                  <img
-                    v-if="episode.image"
-                    :src="episode.image.medium"
-                    class="figure-img img-fluid rounded w-100"
-                  />
-                  <img
-                    v-else
-                    :src="require('@/assets/images/default-image.png')"
-                    class="figure-img img-fluid rounded w-100"
-                  />
-                  <div class="text-dark text-center">
-                    Episode {{ episode.number }}
-                  </div>
-                </figure>
-              </span>
-            </div>
-          </div>
+      <div class="row">
+        <div
+          class="col-md-2 col-6 mt-4"
+          v-for="(season, index) in seasons"
+          :key="index"
+        >
+          <router-link
+            :to="{
+              name: 'episodes',
+              params: { id: showId, seasonNumber: season.number }
+            }"
+          >
+            <maze-image :show-image="season.image" />
+            <div class="text-center">Season {{ season.number }}</div>
+          </router-link>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import mazeImage from "@/components/atoms/maze-image.vue";
 export default {
-  props: ["showSeasons"]
+  components: {
+    mazeImage
+  },
+  props: { seasons: { type: Array }, showId: { type: [Number, String] } }
 };
 </script>
-<style scoped>
-.btn:focus {
-  outline: none;
-  box-shadow: none;
-}
-.btn {
-  font-size: 19px;
-}
-.card-header {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-</style>

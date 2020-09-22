@@ -11,7 +11,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerMaze">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <ul class="navbar-nav mr-auto">
           <li class="nav-item pl-lg-4">
             <router-link :to="{ name: 'home' }">
               <a class="nav-link" href="#">Dashboard</a>

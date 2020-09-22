@@ -6,13 +6,15 @@ describe("mazeShowInfo", () => {
   beforeEach(() => {
     showInfoWrapper = shallowMount(mazeShowInfo, {
       propsData: {
-        image: { medium: "" },
-        rating: { average: 8.5 },
-        genres: ["Action", "Family"],
-        runtime: 120,
-        language: "English",
-        premiered: "24-09-2020",
-        description: ""
+        showInfo: {
+          image: { medium: "" },
+          rating: { average: 8.5 },
+          genres: ["Action", "Family"],
+          runtime: 120,
+          language: "English",
+          premiered: "24-09-2020",
+          description: ""
+        }
       }
     });
   });

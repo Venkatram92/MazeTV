@@ -17,17 +17,16 @@ apiClient.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+// Api request for all shows
+export const getShows = () => apiClient.get(`/shows`);
 
-export default {
-  // Api request for all shows
-  getShows: () => apiClient.get("/shows"),
+// Api request to get all episodes
+export const getEpisodes = id => apiClient.get(`shows/${id}/episodes`);
 
-  // Api request for particular show id
-  getShow: id =>
-    apiClient.get(
-      `/shows/${id}?embed[]=episodes&embed[]=seasons&embed[]=cast&embed[]=crew`
-    ),
+// Api request for particular show id
+export const getShow = id =>
+  apiClient.get(`/shows/${id}?embed[]=seasons&embed[]=cast&embed[]=crew`);
 
-  // Api request to search shows
-  getSearchShows: searchText => apiClient.get(`/search/shows?q=${searchText}`)
-};
+// Api request to search shows
+export const getSearchShows = searchText =>
+  apiClient.get(`/search/shows?q=${searchText}`);

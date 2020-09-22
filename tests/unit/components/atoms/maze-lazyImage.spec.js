@@ -1,8 +1,8 @@
-import mazeImage from "@/components/atoms/maze-image.vue";
+import mazelazyImage from "@/components/atoms/maze-lazyImage.vue";
 import { shallowMount } from "@vue/test-utils";
 
-describe("mazeImage", () => {
-  let imageWrapper;
+describe("mazeImage component", () => {
+  let lazyImageWrapper;
   beforeEach(() => {
     let intersect;
     global.IntersectionObserver = function(cb) {
@@ -12,7 +12,7 @@ describe("mazeImage", () => {
         disconnect: () => {}
       };
     };
-    imageWrapper = shallowMount(mazeImage, {
+    lazyImageWrapper = shallowMount(mazelazyImage, {
       propsData: {
         src:
           "http://static.tvmaze.com/uploads/images/medium_portrait/0/2400.jpg"
@@ -22,7 +22,7 @@ describe("mazeImage", () => {
   });
   it("should check the html markup", () => {
     const expected =
-      '<img src="http://static.tvmaze.com/uploads/images/medium_portrait/0/2400.jpg" class="img-fluid p-1 w-100">';
-    expect(imageWrapper.html()).toContain(expected);
+      '<img src="http://static.tvmaze.com/uploads/images/medium_portrait/0/2400.jpg" class="p-1 w-100">';
+    expect(lazyImageWrapper.html()).toContain(expected);
   });
 });

@@ -12,7 +12,7 @@ describe("mazeGenre", () => {
     });
   });
   it("should check the html markup", () => {
-    const expected = '<h3 class="pl-4 py-4 ml-1 text-light">Action</h3>';
+    const expected = '<h3 class="pl-4 py-4 ml-1 text-secondary">Action</h3>';
     expect(genreWrapper.html()).toContain(expected);
   });
 });

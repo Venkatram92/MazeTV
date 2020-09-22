@@ -5,11 +5,11 @@ MazeTV application is a guide for popular tv shows from the [Tvmaze API](http://
 ![MazeTV](https://github.com/Venkatram92/MazeTV/blob/master/MazeTV.JPG)
 
 ## :page_with_curl: Prerequisites
-```
+
 1. Node v12.18.3
 2. npm 6.14.6
 3. @vue/cli 4.5.6
-```
+
 ## :books: Project dependencies
 
 1. axios

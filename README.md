@@ -1,10 +1,10 @@
-# MazeTV Application
+# MazeTV Application VueJS
+
+MazeTV application is a guide for popular Tv Shows from the ![Tvmaze API](http://www.tvmaze.com/api). Displays information about a selected show like seasons, ,epdisodes, cast, crew. Functionality to search for shows.
 
 ![MazeTV](https://github.com/Venkatram92/MazeTV/blob/master/MazeTV.JPG)
 
-[Go to mazetv application](https://vue-tvshowapp.herokuapp.com/)
-
-## Project setup
+## :page_with_curl: Project setup
 ```
 npm install
 ```

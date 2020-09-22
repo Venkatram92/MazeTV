@@ -39,7 +39,7 @@ describe("Dashboard component", () => {
   it("should render maze-genre mark up", () => {
     expect(dashboardWrapper.find("maze-genre-stub").exists()).toBe(true);
   });
-  it("should not render maze-popular maze-genre if shows data is empty", async () => {
+  it("should not render maze-popular and maze-genre if shows data is empty", async () => {
     dashboardWrapper.setData({ popularShows: [], showsByGenres: [] });
     await dashboardWrapper.vm.$nextTick();
     expect(dashboardWrapper.find("maze-popular-stub").exists()).toBe(false);
